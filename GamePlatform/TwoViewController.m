@@ -7,6 +7,8 @@
 //
 
 #import "TwoViewController.h"
+#import "RequestAssistor.h"
+#import "DataModels.h"
 
 #define kReuserIdOne @"cell1"
 #define kReuserIdTwo @"cell2"
@@ -17,19 +19,35 @@
 @property(nonatomic,strong)UITableView *leftTableView;
 @property(nonatomic,strong)UITableView *midTableView;
 @property(nonatomic,strong)UITableView *rightTableView;
+
+@property(nonatomic,strong)NSMutableArray *arr;
+@property(nonatomic,strong)BaseClass *baseClass;
 @end
 
 @implementation TwoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.arr = [[NSMutableArray alloc] init];
+    self.baseClass = [[BaseClass alloc] init];
+    [self requestData];// 请求数据
     // Do any additional setup after loading the view.
     self.navigationController.navigationBarHidden = YES;
     [self createSegmentedControl];
     [self createScrollView];
     [self createThreeTableView];
     
-    NSLog(@"%f",self.tabBarController.tabBar.bounds.size.height);
+    
+//    NSLog(@"%f",self.tabBarController.tabBar.bounds.size.height);
+}
+- (void)requestData
+{
+    [RequestAssistor requestWithDetailCompleteBlock:^(BaseClass *requestDic) {
+        [self.arr removeAllObjects];
+        self.arr = requestDic.travels;
+//        NSLog(@"dic?->%d",[requestDic.travels isKindOfClass:[NSArray class]]);
+        [self.leftTableView reloadData];// 刷新
+    }];
 }
 #pragma mark - UI
 - (void)createSegmentedControl
@@ -85,7 +103,18 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 20;
+    if (tableView.tag == 10)
+    {
+        return self.arr.count;
+    }
+    else if (tableView.tag == 11)
+    {
+        return self.arr.count;
+    }
+    else
+    {
+        return self.arr.count;
+    }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -100,7 +129,9 @@
         {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier1];
         }
-        cell.textLabel.text = @"left";
+        Travels *travel = self.arr[indexPath.row]; // 用objectForKey：的话是取的travels的对象，travels不是字典。不能用objectForKey：。
+        NSLog(@">>%d",[self.arr[indexPath.row] isKindOfClass:[NSDictionary class]]);
+        cell.textLabel.text = travel.title;
     }
         if (tableView.tag == 11)
     {

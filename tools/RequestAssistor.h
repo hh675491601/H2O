@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataModels.h"
 
 @interface RequestAssistor : NSObject
-
++(void)requestWithDetailCompleteBlock:(void(^)(BaseClass *requestDic))block;
 @end

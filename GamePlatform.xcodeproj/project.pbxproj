@@ -42,6 +42,8 @@
 		7B62C3281B96DAC700F86AFF /* RequestAssistor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62C3271B96DAC700F86AFF /* RequestAssistor.m */; };
 		7B8B3E111B95516900338F34 /* MJChiBaoZiFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8B3E101B95516900338F34 /* MJChiBaoZiFooter.m */; };
 		7B8B3E141B95547C00338F34 /* MJChiBaoZiHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8B3E131B95547C00338F34 /* MJChiBaoZiHeader.m */; };
+		7B91F13E1B9BF02B00E4AC30 /* BaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B91F13A1B9BF02B00E4AC30 /* BaseClass.m */; };
+		7B91F13F1B9BF02B00E4AC30 /* Travels.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B91F13D1B9BF02B00E4AC30 /* Travels.m */; };
 		7B92FE671B93F3B800BBB3F5 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B92FE661B93F3B800BBB3F5 /* CustomTableViewCell.m */; };
 		7B93F1F91B8EDFB600087741 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B93F1F81B8EDFB600087741 /* main.m */; };
 		7B93F1FC1B8EDFB600087741 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B93F1FB1B8EDFB600087741 /* AppDelegate.m */; };
@@ -155,6 +157,11 @@
 		7B8B3E101B95516900338F34 /* MJChiBaoZiFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiFooter.m; sourceTree = "<group>"; };
 		7B8B3E121B95547C00338F34 /* MJChiBaoZiHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChiBaoZiHeader.h; sourceTree = "<group>"; };
 		7B8B3E131B95547C00338F34 /* MJChiBaoZiHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiHeader.m; sourceTree = "<group>"; };
+		7B91F1391B9BF02B00E4AC30 /* BaseClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseClass.h; sourceTree = "<group>"; };
+		7B91F13A1B9BF02B00E4AC30 /* BaseClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseClass.m; sourceTree = "<group>"; };
+		7B91F13B1B9BF02B00E4AC30 /* DataModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModels.h; sourceTree = "<group>"; };
+		7B91F13C1B9BF02B00E4AC30 /* Travels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Travels.h; sourceTree = "<group>"; };
+		7B91F13D1B9BF02B00E4AC30 /* Travels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Travels.m; sourceTree = "<group>"; };
 		7B92FE651B93F3B800BBB3F5 /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		7B92FE661B93F3B800BBB3F5 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		7B93F1F31B8EDFB600087741 /* GamePlatform.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamePlatform.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,6 +371,18 @@
 			path = tools;
 			sourceTree = SOURCE_ROOT;
 		};
+		7B91F1381B9BF02B00E4AC30 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B91F1391B9BF02B00E4AC30 /* BaseClass.h */,
+				7B91F13A1B9BF02B00E4AC30 /* BaseClass.m */,
+				7B91F13B1B9BF02B00E4AC30 /* DataModels.h */,
+				7B91F13C1B9BF02B00E4AC30 /* Travels.h */,
+				7B91F13D1B9BF02B00E4AC30 /* Travels.m */,
+			);
+			path = Model;
+			sourceTree = SOURCE_ROOT;
+		};
 		7B92FE641B93F34800BBB3F5 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,6 +413,7 @@
 		7B93F1F51B8EDFB600087741 /* GamePlatform */ = {
 			isa = PBXGroup;
 			children = (
+				7B91F1381B9BF02B00E4AC30 /* Model */,
 				7B62C3251B96DA3200F86AFF /* tools */,
 				7B92FE641B93F34800BBB3F5 /* CustomViews */,
 				7B93F2601B8EF50900087741 /* images */,
@@ -571,6 +591,7 @@
 				TargetAttributes = {
 					7B93F1F21B8EDFB600087741 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = DJV4J45E89;
 					};
 					7B93F20B1B8EDFB600087741 = {
 						CreatedOnToolsVersion = 6.4;
@@ -670,6 +691,7 @@
 				7B1A87361B94656D00F89C71 /* MJRefreshBackNormalFooter.m in Sources */,
 				7B93F1F91B8EDFB600087741 /* main.m in Sources */,
 				7B1A87341B94656D00F89C71 /* MJRefreshAutoStateFooter.m in Sources */,
+				7B91F13E1B9BF02B00E4AC30 /* BaseClass.m in Sources */,
 				7B1A873A1B94656D00F89C71 /* MJRefreshStateHeader.m in Sources */,
 				7B93F2251B8EE15800087741 /* ThreeViewController.m in Sources */,
 				7B93F2221B8EE14500087741 /* TwoViewController.m in Sources */,
@@ -681,6 +703,7 @@
 				7B1A87371B94656D00F89C71 /* MJRefreshBackStateFooter.m in Sources */,
 				7B8B3E141B95547C00338F34 /* MJChiBaoZiHeader.m in Sources */,
 				7B1A873E1B94656D00F89C71 /* UIScrollView+MJRefresh.m in Sources */,
+				7B91F13F1B9BF02B00E4AC30 /* Travels.m in Sources */,
 				7B93F25B1B8EE94100087741 /* MASViewConstraint.m in Sources */,
 				7B62C3221B96D9C300F86AFF /* AFURLRequestSerialization.m in Sources */,
 				7B93F21F1B8EE13500087741 /* OneViewController.m in Sources */,
@@ -744,6 +767,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -788,6 +812,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -820,6 +845,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -834,6 +860,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
