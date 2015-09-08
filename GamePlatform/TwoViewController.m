@@ -9,10 +9,13 @@
 #import "TwoViewController.h"
 #import "RequestAssistor.h"
 #import "DataModels.h"
+#import "MJRefresh.h"
 
 #define kReuserIdOne @"cell1"
 #define kReuserIdTwo @"cell2"
 #define kReuserIdThree @"cell3"
+
+static int dataIndex = 2;
 @interface TwoViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UIScrollView *scr;
 @property(nonatomic,strong)UISegmentedControl *seg;
@@ -21,6 +24,7 @@
 @property(nonatomic,strong)UITableView *rightTableView;
 
 @property(nonatomic,strong)NSMutableArray *arr;
+@property(nonatomic,strong)NSMutableArray *moreData;
 @property(nonatomic,strong)BaseClass *baseClass;
 @end
 
@@ -29,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.arr = [[NSMutableArray alloc] init];
+    self.moreData = [[NSMutableArray alloc] init];
     self.baseClass = [[BaseClass alloc] init];
     [self requestData];// 请求数据
     // Do any additional setup after loading the view.
@@ -36,6 +41,10 @@
     [self createSegmentedControl];
     [self createScrollView];
     [self createThreeTableView];
+    // 上拉刷新
+    [self customUpRefresh];
+    
+
     
     
 //    NSLog(@"%f",self.tabBarController.tabBar.bounds.size.height);
@@ -48,6 +57,16 @@
 //        NSLog(@"dic?->%d",[requestDic.travels isKindOfClass:[NSArray class]]);
         [self.leftTableView reloadData];// 刷新
     }];
+}
+// upPull ---------------------------------------------
+- (void)requestMoreData
+{
+    [RequestAssistor requestWith:dataIndex UpPullDetailCompleteBlock:^(BaseClass *requestDic) {
+        [self.moreData removeAllObjects];
+        self.moreData = requestDic.travels;
+        NSLog(@"moreData - %@",self.moreData);
+    }];
+    dataIndex ++;
 }
 #pragma mark - UI
 - (void)createSegmentedControl
@@ -130,7 +149,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier1];
         }
         Travels *travel = self.arr[indexPath.row]; // 用objectForKey：的话是取的travels的对象，travels不是字典。不能用objectForKey：。
-        NSLog(@">>%d",[self.arr[indexPath.row] isKindOfClass:[NSDictionary class]]);
+//        NSLog(@">>%d",[self.arr[indexPath.row] isKindOfClass:[NSDictionary class]]);
         cell.textLabel.text = travel.title;
     }
         if (tableView.tag == 11)
@@ -156,9 +175,35 @@
 // seg绑定的方法
 - (void)clickSeg:(id)sender
 {
-    NSLog(@"我点了%d",self.seg.selectedSegmentIndex);
+//    NSLog(@"我点了%ld",(long)self.seg.selectedSegmentIndex);
     CGPoint offset = CGPointMake(self.seg.selectedSegmentIndex * 320 * SCREEN_WIDTHSCALE, 0);
     [self.scr setContentOffset:offset animated:YES];
+}
+/*
+ **********************************************
+ */
+#pragma mark UITableView + 上拉刷新 自动回弹的上拉01 ---------------------------------
+- (void)customUpRefresh
+{
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
+    self.leftTableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    // 设置了底部inset
+    self.leftTableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
+    // 忽略掉底部inset
+    self.leftTableView.footer.ignoredScrollViewContentInsetBottom = 30;
+//    [self requestMoreData];
+}
+#pragma mark 上拉加载更多数据
+- (void)loadMoreData
+{
+    [self requestMoreData];
+
+    // 1.添加数据
+        [self.arr addObjectsFromArray:self.moreData];//尾部追加一个数组
+    // 2.刷新表格UI
+        [self.leftTableView reloadData];
+        // 拿到当前的上拉刷新控件，结束刷新状态
+        [self.leftTableView.footer endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {

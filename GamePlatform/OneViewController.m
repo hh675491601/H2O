@@ -138,7 +138,7 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark 上拉加载更多数据
 - (void)loadMoreData
 {
-    // 1.添加假数据
+    // 1.添加5条假数据
     for (int i = 0; i<5; i++) {
         [self.data addObject:MJRandomData];
     }
