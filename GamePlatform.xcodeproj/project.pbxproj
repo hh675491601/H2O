@@ -40,6 +40,7 @@
 		7B62C3231B96D9C300F86AFF /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62C3191B96D9C300F86AFF /* AFURLResponseSerialization.m */; };
 		7B62C3241B96D9C300F86AFF /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62C31B1B96D9C300F86AFF /* AFURLSessionManager.m */; };
 		7B62C3281B96DAC700F86AFF /* RequestAssistor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B62C3271B96DAC700F86AFF /* RequestAssistor.m */; };
+		7B74C0FD1BA1AD4D002D49A6 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B74C0FC1BA1AD4D002D49A6 /* DetailViewController.m */; };
 		7B8B3E111B95516900338F34 /* MJChiBaoZiFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8B3E101B95516900338F34 /* MJChiBaoZiFooter.m */; };
 		7B8B3E141B95547C00338F34 /* MJChiBaoZiHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8B3E131B95547C00338F34 /* MJChiBaoZiHeader.m */; };
 		7B91F13E1B9BF02B00E4AC30 /* BaseClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B91F13A1B9BF02B00E4AC30 /* BaseClass.m */; };
@@ -153,6 +154,8 @@
 		7B62C31B1B96D9C300F86AFF /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		7B62C3261B96DAC700F86AFF /* RequestAssistor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestAssistor.h; sourceTree = "<group>"; };
 		7B62C3271B96DAC700F86AFF /* RequestAssistor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestAssistor.m; sourceTree = "<group>"; };
+		7B74C0FB1BA1AD4D002D49A6 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		7B74C0FC1BA1AD4D002D49A6 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		7B8B3E0F1B95516900338F34 /* MJChiBaoZiFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChiBaoZiFooter.h; sourceTree = "<group>"; };
 		7B8B3E101B95516900338F34 /* MJChiBaoZiFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJChiBaoZiFooter.m; sourceTree = "<group>"; };
 		7B8B3E121B95547C00338F34 /* MJChiBaoZiHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJChiBaoZiHeader.h; sourceTree = "<group>"; };
@@ -371,6 +374,15 @@
 			path = tools;
 			sourceTree = SOURCE_ROOT;
 		};
+		7B74C0FA1BA1AD29002D49A6 /* TwoDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				7B74C0FB1BA1AD4D002D49A6 /* DetailViewController.h */,
+				7B74C0FC1BA1AD4D002D49A6 /* DetailViewController.m */,
+			);
+			name = TwoDetailVC;
+			sourceTree = "<group>";
+		};
 		7B91F1381B9BF02B00E4AC30 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +477,7 @@
 				7B93F21E1B8EE13500087741 /* OneViewController.m */,
 				7B93F2201B8EE14500087741 /* TwoViewController.h */,
 				7B93F2211B8EE14500087741 /* TwoViewController.m */,
+				7B74C0FA1BA1AD29002D49A6 /* TwoDetailVC */,
 				7B93F2231B8EE15800087741 /* ThreeViewController.h */,
 				7B93F2241B8EE15800087741 /* ThreeViewController.m */,
 				7B93F2261B8EE16300087741 /* FourViewController.h */,
@@ -693,6 +706,7 @@
 				7B1A87341B94656D00F89C71 /* MJRefreshAutoStateFooter.m in Sources */,
 				7B91F13E1B9BF02B00E4AC30 /* BaseClass.m in Sources */,
 				7B1A873A1B94656D00F89C71 /* MJRefreshStateHeader.m in Sources */,
+				7B74C0FD1BA1AD4D002D49A6 /* DetailViewController.m in Sources */,
 				7B93F2251B8EE15800087741 /* ThreeViewController.m in Sources */,
 				7B93F2221B8EE14500087741 /* TwoViewController.m in Sources */,
 				7B1A87331B94656D00F89C71 /* MJRefreshAutoNormalFooter.m in Sources */,

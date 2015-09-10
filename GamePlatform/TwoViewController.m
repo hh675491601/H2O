@@ -172,6 +172,10 @@ static int dataIndex = 2;
     }
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 // seg绑定的方法
 - (void)clickSeg:(id)sender
 {
