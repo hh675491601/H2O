@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>E0E72B74-897A-46A0-826E-2DAE557A6770</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>GamePlatform</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>1276AEFF34E55409353FA6EAEF64BDFB0423781A</key>
 		<string>github.com:hh675491601/H2O.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GamePlatform.xcodeproj/project.xcworkspace</string>
+	<string>GamePlatform.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>1276AEFF34E55409353FA6EAEF64BDFB0423781A</key>
