@@ -11,5 +11,6 @@
 
 @interface RequestAssistor : NSObject
 +(void)requestWithDetailCompleteBlock:(void(^)(BaseClass *requestDic))block;
++(void)requestWithDetailCompleteBlock:(int)count downPullDetailCompleteBlock:(void(^)(BaseClass *requestDic))block;
 +(void)requestWith:(int)sender UpPullDetailCompleteBlock:(void(^)(BaseClass *requestDic))block;
 @end

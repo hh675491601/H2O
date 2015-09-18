@@ -15,7 +15,7 @@
 #define kReuserIdTwo @"cell2"
 #define kReuserIdThree @"cell3"
 
-static int dataIndex = 2;
+static int dataIndex = 2;int count = 10;
 @interface TwoViewController ()<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 @property(nonatomic,strong)UIScrollView *scr;
 @property(nonatomic,strong)UISegmentedControl *seg;
@@ -25,7 +25,11 @@ static int dataIndex = 2;
 
 @property(nonatomic,strong)NSMutableArray *arr;
 @property(nonatomic,strong)NSMutableArray *moreData;
+@property(nonatomic,strong)NSMutableArray *nnData;
+//@property(nonatomic,strong)NSMutableArray *idArr;//存自增id
 @property(nonatomic,strong)BaseClass *baseClass;
+
+@property(nonatomic,strong)MJRefreshNormalHeader *header;
 @end
 
 @implementation TwoViewController
@@ -34,6 +38,8 @@ static int dataIndex = 2;
     [super viewDidLoad];
     self.arr = [[NSMutableArray alloc] init];
     self.moreData = [[NSMutableArray alloc] init];
+    self.nnData = [[NSMutableArray alloc] init];
+//    self.idArr = [[NSMutableArray alloc] init];
     self.baseClass = [[BaseClass alloc] init];
     [self requestData];// 请求数据
     // Do any additional setup after loading the view.
@@ -43,12 +49,18 @@ static int dataIndex = 2;
     [self createThreeTableView];
     // 上拉刷新
     [self customUpRefresh];
-    
+    // 下拉刷新
+    [self customDownRefresh];
 
-    
-    
 //    NSLog(@"%f",self.tabBarController.tabBar.bounds.size.height);
 }
+
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    [super viewDidAppear:YES];
+////    [self customUpRefresh];
+////    [self customDownRefresh];
+//}
 - (void)requestData
 {
     [RequestAssistor requestWithDetailCompleteBlock:^(BaseClass *requestDic) {
@@ -58,15 +70,30 @@ static int dataIndex = 2;
         [self.leftTableView reloadData];// 刷新
     }];
 }
-// upPull ---------------------------------------------
+// upPull 上拉 ---------------------------------------------
 - (void)requestMoreData
 {
     [RequestAssistor requestWith:dataIndex UpPullDetailCompleteBlock:^(BaseClass *requestDic) {
         [self.moreData removeAllObjects];
         self.moreData = requestDic.travels;
-        NSLog(@"moreData - %@",self.moreData);
+//        NSLog(@"moreData - %@",self.moreData);
     }];
     dataIndex ++;
+}
+// downPull 下拉
+- (void)requestNewData
+{
+    [RequestAssistor requestWithDetailCompleteBlock:count downPullDetailCompleteBlock:^(BaseClass *requestDic) {
+        [self.nnData removeAllObjects];
+        self.nnData = requestDic.travels;
+        for (int i = 0;i < self.nnData.count;i++)
+        {
+            Travels *travel = self.nnData[i];
+//            self.idArr = [[self.nnData objectAtIndex:i] objectForKey:@"id"];
+            NSLog(@"travel::%@",travel.dTime);
+        }
+//        NSLog(@"nnDataa::%@",self.nnData);
+    }];
 }
 #pragma mark - UI
 - (void)createSegmentedControl
@@ -186,7 +213,7 @@ static int dataIndex = 2;
 /*
  **********************************************
  */
-#pragma mark UITableView + 上拉刷新 自动回弹的上拉01 ---------------------------------
+#pragma mark UITableView + 上拉刷新 自动回弹的上拉01 ------------------------------------------------------------------
 - (void)customUpRefresh
 {
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
@@ -195,7 +222,7 @@ static int dataIndex = 2;
     self.leftTableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     // 忽略掉底部inset
     self.leftTableView.footer.ignoredScrollViewContentInsetBottom = 30;
-//    [self requestMoreData];
+    [self requestMoreData];
 }
 #pragma mark 上拉加载更多数据
 - (void)loadMoreData
@@ -208,6 +235,49 @@ static int dataIndex = 2;
         [self.leftTableView reloadData];
         // 拿到当前的上拉刷新控件，结束刷新状态
         [self.leftTableView.footer endRefreshing];
+}
+#pragma mark UITableView + 下拉刷新 自定义文字
+- (void)customDownRefresh
+{
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    self.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    // 设置文字
+    // 设置字体
+    self.header.stateLabel.font = [UIFont systemFontOfSize:15];
+    self.header.lastUpdatedTimeLabel.font = [UIFont systemFontOfSize:14];
+    // 设置颜色
+    self.header.stateLabel.textColor = [UIColor grayColor];
+    self.header.lastUpdatedTimeLabel.textColor = [UIColor blueColor];
+    // 马上进入刷新状态
+    [self.header beginRefreshing];
+    // 设置刷新控件
+    self.leftTableView.header = self.header;
+}
+#pragma mark 下拉刷新数据 ------------------------------------------------------------------
+- (void)loadNewData
+{
+    [self requestNewData];
+    // 1.添加数据
+    if (self.arr.count != 0 && self.nnData.count != 0)
+    {
+//        NSLog(@"self.arr[0]>>%@",self.arr);
+        if ([self.arr[0] isEqual:self.nnData[0]])
+        {
+//            NSLog(@"self.arr[0]>>%@ \nself.nnData[0]>>%@",self.arr[0],self.nnData[0]);
+            NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
+                                   NSMakeRange(0,[self.nnData count])];
+            [self.arr insertObjects:self.nnData atIndexes:indexes];
+
+        }
+        // 设置文字
+        [self.header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
+        [self.header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
+        [self.header setTitle:@"Loading..." forState:MJRefreshStateRefreshing];
+    }
+    // 2.刷新表格UI
+    [self.leftTableView reloadData];
+    // 拿到当前的下拉刷新控件，结束刷新状态
+    [self.leftTableView.header endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning {

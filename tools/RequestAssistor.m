@@ -28,6 +28,18 @@
         NSLog(@"%@",error);
     }];
 }
++(void)requestWithDetailCompleteBlock:(int)count downPullDetailCompleteBlock:(void(^)(BaseClass *requestDic))block
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 10.f;
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager POST:[NSString stringWithFormat:@"http://www.517huwai.com/Mobile/travels?count=%d&page=",count] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        BaseClass *baseDic = [BaseClass modelObjectWithDictionary:responseObject];
+        block(baseDic);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
 
 +(void)requestWith:(int)sender UpPullDetailCompleteBlock:(void(^)(BaseClass *requestDic))block
 {
@@ -35,7 +47,7 @@
     manager.requestSerializer.timeoutInterval = 10.f;
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     [manager POST:[NSString stringWithFormat:@"http://www.517huwai.com/Mobile/travels?count=10&page=%d",sender] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"responseObject->%@",responseObject);
+//        NSLog(@"responseObject->%@",responseObject);
         BaseClass *BaseDic = [BaseClass modelObjectWithDictionary:responseObject];
         block(BaseDic);
 //        NSLog(@"BaseDic->%@",BaseDic);
