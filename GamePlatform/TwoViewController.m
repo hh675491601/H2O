@@ -28,8 +28,8 @@ static int dataIndex = 2;int count = 10;
 @property(nonatomic,strong)NSMutableArray *nnData;
 //@property(nonatomic,strong)NSMutableArray *idArr;//存自增id
 @property(nonatomic,strong)BaseClass *baseClass;
-
 @property(nonatomic,strong)MJRefreshNormalHeader *header;
+@property(nonatomic,strong)UIActivityIndicatorView *hud;
 @end
 
 @implementation TwoViewController
