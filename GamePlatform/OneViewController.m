@@ -60,7 +60,7 @@ static const CGFloat MJDuration = 2.0;
 - (void)createHud
 {
     self.hud = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.hud.frame = CGRectMake(110, 190, 100, 100);
+    self.hud.frame = CGRectMake(110 * SCREEN_WIDTHSCALE, 190 * SCREEN_HEIGHTSCALE, 100 * SCREEN_WIDTHSCALE, 100 * SCREEN_HEIGHTSCALE);
     [self.view addSubview:self.hud];
     [self.hud startAnimating];
 }
