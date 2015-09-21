@@ -10,6 +10,7 @@
 #import "RequestAssistor.h"
 #import "DataModels.h"
 #import "MJRefresh.h"
+#import "DetailViewController.h"
 
 #define kReuserIdOne @"cell1"
 #define kReuserIdTwo @"cell2"
@@ -201,6 +202,8 @@ static int dataIndex = 2;int count = 10;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DetailViewController *detailVC = [[DetailViewController alloc] initWithPara:self.arr[indexPath.row]];
+    [self.navigationController pushViewController:detailVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 // seg绑定的方法
@@ -270,8 +273,8 @@ static int dataIndex = 2;int count = 10;
 
         }
         // 设置文字
-        [self.header setTitle:@"Pull down to refresh" forState:MJRefreshStateIdle];
-        [self.header setTitle:@"Release to refresh" forState:MJRefreshStatePulling];
+        [self.header setTitle:@"下拉刷新" forState:MJRefreshStateIdle];
+        [self.header setTitle:@"松手刷新" forState:MJRefreshStatePulling];
         [self.header setTitle:@"Loading..." forState:MJRefreshStateRefreshing];
     }
     // 2.刷新表格UI

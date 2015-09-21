@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Travels.h"
 
 @interface DetailViewController : UIViewController
-
+- (id)initWithPara:(Travels *)sender;
 @end
