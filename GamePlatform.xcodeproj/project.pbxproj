@@ -86,6 +86,7 @@
 		7B93F2721B8EF50900087741 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B93F2681B8EF50900087741 /* news@2x.png */; };
 		7B93F2731B8EF50900087741 /* person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B93F2691B8EF50900087741 /* person@2x.png */; };
 		7B93F2741B8EF50900087741 /* userinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B93F26A1B8EF50900087741 /* userinfo@2x.png */; };
+		7B9AC4CD1BB27975000A9E68 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9AC4CC1BB27975000A9E68 /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +257,8 @@
 		7B93F2691B8EF50900087741 /* person@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "person@2x.png"; sourceTree = "<group>"; };
 		7B93F26A1B8EF50900087741 /* userinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userinfo@2x.png"; sourceTree = "<group>"; };
 		7B953FE11B90333700E6936B /* GamePlatform-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GamePlatform-Prefix.pch"; sourceTree = "<group>"; };
+		7B9AC4CB1BB27975000A9E68 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		7B9AC4CC1BB27975000A9E68 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,6 +553,7 @@
 		7B93F2391B8EE94100087741 /* Third */ = {
 			isa = PBXGroup;
 			children = (
+				7B9AC4CA1BB27975000A9E68 /* MBHud */,
 				7B7B196A1BB0089A000E3BC8 /* SDWebImage */,
 				7B62C3081B96D9C300F86AFF /* AFNetworking */,
 				7B8B3E121B95547C00338F34 /* MJChiBaoZiHeader.h */,
@@ -615,6 +619,15 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		7B9AC4CA1BB27975000A9E68 /* MBHud */ = {
+			isa = PBXGroup;
+			children = (
+				7B9AC4CB1BB27975000A9E68 /* MBProgressHUD.h */,
+				7B9AC4CC1BB27975000A9E68 /* MBProgressHUD.m */,
+			);
+			path = MBHud;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -664,7 +677,7 @@
 				TargetAttributes = {
 					7B93F1F21B8EDFB600087741 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 8E8E88WEYJ;
+						DevelopmentTeam = 4F33YHV99U;
 					};
 					7B93F20B1B8EDFB600087741 = {
 						CreatedOnToolsVersion = 6.4;
@@ -739,6 +752,7 @@
 				7B93F2281B8EE16300087741 /* FourViewController.m in Sources */,
 				7B62C3211B96D9C300F86AFF /* AFURLConnectionOperation.m in Sources */,
 				7B1A873C1B94656D00F89C71 /* MJRefreshConst.m in Sources */,
+				7B9AC4CD1BB27975000A9E68 /* MBProgressHUD.m in Sources */,
 				7B93F25C1B8EE94100087741 /* NSArray+MASAdditions.m in Sources */,
 				7B93F1FF1B8EDFB600087741 /* ViewController.m in Sources */,
 				7B1A87381B94656D00F89C71 /* MJRefreshGifHeader.m in Sources */,
@@ -921,6 +935,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GamePlatform/GamePlatform-Prefix.pch";
@@ -937,6 +952,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/GamePlatform/GamePlatform-Prefix.pch";

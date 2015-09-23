@@ -11,6 +11,7 @@
 #import "MJRefresh.h"
 #import "MJChiBaoZiFooter.h"
 #import "MJChiBaoZiHeader.h"
+#import "MBProgressHUD.h"
 
 #define kReuserIdentifier @"cell"
 #define kTimeInterval 1
@@ -29,7 +30,7 @@ static const CGFloat MJDuration = 2.0;
 /** 用来显示的假数据 */
 @property(strong, nonatomic) NSMutableArray *data;
 @property(strong, nonatomic)NSTimer *timer;
-@property(nonatomic,strong)UIActivityIndicatorView *hud;
+@property(nonatomic,strong)MBProgressHUD *hud;
 @end
 
 @implementation OneViewController
@@ -59,10 +60,10 @@ static const CGFloat MJDuration = 2.0;
 #pragma mark - hud
 - (void)createHud
 {
-    self.hud = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.hud = [[MBProgressHUD alloc] init];
     self.hud.frame = CGRectMake(110 * SCREEN_WIDTHSCALE, 190 * SCREEN_HEIGHTSCALE, 100 * SCREEN_WIDTHSCALE, 100 * SCREEN_HEIGHTSCALE);
     [self.view addSubview:self.hud];
-    [self.hud startAnimating];
+    [self.hud show:YES];
 }
 /*
  **********************************************
@@ -82,7 +83,7 @@ static const CGFloat MJDuration = 2.0;
         // 拿到当前的下拉刷新控件，结束刷新状态
         [self.tableView.header endRefreshing];
         //
-        [self.hud stopAnimating];
+        [self.hud hide:YES];
     });
 }
 #pragma mark UITableView + 下拉刷新 自定义文字
