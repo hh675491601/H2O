@@ -11,7 +11,7 @@
 #import "DataModels.h"
 #import "MJRefresh.h"
 #import "DetailViewController.h"
-#import "MBProgressHUD.h"
+#import "HudViewController.h"//hh'hud
 
 #define kReuserIdOne @"cell1"
 #define kReuserIdTwo @"cell2"
@@ -31,7 +31,6 @@ static int dataIndex = 2;int count = 10;
 //@property(nonatomic,strong)NSMutableArray *idArr;//存自增id
 @property(nonatomic,strong)BaseClass *baseClass;
 @property(nonatomic,strong)MJRefreshNormalHeader *header;
-@property(nonatomic,strong)MBProgressHUD *hud;
 @end
 
 @implementation TwoViewController
@@ -49,11 +48,8 @@ static int dataIndex = 2;int count = 10;
     [self createSegmentedControl];
     [self createScrollView];
     [self createThreeTableView];
-    //
-    self.hud = [[MBProgressHUD alloc] init];
-    self.hud.frame = CGRectMake(110 * SCREEN_WIDTHSCALE, 190 * SCREEN_HEIGHTSCALE, 100 * SCREEN_WIDTHSCALE, 100 * SCREEN_HEIGHTSCALE);
-    [self.view addSubview:self.hud];
-    [self.hud show:YES];
+    // my hud singleTon
+    [[HudViewController sharedClient] createCustomHudWithSuperView:self.view andLoadText:@"loading..."];
     // 上拉刷新
     [self customUpRefresh];
     // 下拉刷新
@@ -68,7 +64,8 @@ static int dataIndex = 2;int count = 10;
         self.arr = requestDic.travels;
 //        NSLog(@"dic?->%d",[requestDic.travels isKindOfClass:[NSArray class]]);
         [self.leftTableView reloadData];// 刷新
-        [self.hud hide:YES];
+        // hide my hud
+        [[HudViewController sharedClient] hideThisHud];
     }];
 }
 // upPull 上拉 ---------------------------------------------
