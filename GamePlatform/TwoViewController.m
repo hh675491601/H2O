@@ -91,7 +91,7 @@ static int dataIndex = 2;int count = 10;
 //        NSLog(@"nnDataa::%@",self.nnData);
     }];
 }
-#pragma mark - UI
+#pragma mark - UI -----------------------------------------------line-----
 - (void)createSegmentedControl
 {
     self.seg = [[UISegmentedControl alloc] initWithItems:@[@"飙升榜",@"游戏榜",@"苹果榜"]];
@@ -135,14 +135,14 @@ static int dataIndex = 2;int count = 10;
     self.rightTableView.delegate = self;
     [self.scr addSubview:self.rightTableView];
 }
-#pragma mark - uiscrollviewdelegate
+#pragma mark - uiscrollviewdelegate -----------------------------------------------line-----
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat width = self.scr.frame.size.width;
     int x = (self.scr.contentOffset.x)/width;
     self.seg.selectedSegmentIndex = x;
 }
-#pragma mark - UITableViewDataSource
+#pragma mark - UITableView -----------------------------------------------line-----
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView.tag == 10)

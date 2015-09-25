@@ -291,6 +291,12 @@ static const CGFloat MJDuration = 2.0;
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.data removeObjectAtIndex:indexPath.row];
+    [self.tableView reloadData];
+}
+
 // 手势方法
 - (void)taptap
 {
