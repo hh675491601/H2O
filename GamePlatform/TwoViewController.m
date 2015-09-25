@@ -274,10 +274,12 @@ static int dataIndex = 2;int count = 10;
         [self.header setTitle:@"松手刷新" forState:MJRefreshStatePulling];
         [self.header setTitle:@"Loading..." forState:MJRefreshStateRefreshing];
     }
-    // 2.刷新表格UI
-    [self.leftTableView reloadData];
-    // 拿到当前的下拉刷新控件，结束刷新状态
-    [self.leftTableView.header endRefreshing];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 2.刷新表格UI
+        [self.leftTableView reloadData];
+        // 拿到当前的下拉刷新控件，结束刷新状态
+        [self.leftTableView.header endRefreshing];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
