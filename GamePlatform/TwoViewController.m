@@ -64,8 +64,6 @@ static int dataIndex = 2;int count = 10;
         self.arr = requestDic.travels;
 //        NSLog(@"dic?->%d",[requestDic.travels isKindOfClass:[NSArray class]]);
         [self.leftTableView reloadData];// 刷新
-        // hide my hud
-        [[HudViewController sharedClient] hideThisHud];
     }];
 }
 // upPull 上拉 ---------------------------------------------
@@ -274,11 +272,12 @@ static int dataIndex = 2;int count = 10;
         [self.header setTitle:@"松手刷新" forState:MJRefreshStatePulling];
         [self.header setTitle:@"Loading..." forState:MJRefreshStateRefreshing];
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (ino64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 2.刷新表格UI
-        [self.leftTableView reloadData];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.leftTableView reloadData];// 刷新
         // 拿到当前的下拉刷新控件，结束刷新状态
         [self.leftTableView.header endRefreshing];
+        // hide my hud
+        [[HudViewController sharedClient] hideThisHud];
     });
 }
 
